@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Football Clubs</title>
+</head>
+<body>
+    <h1>Lista Klubova</h1>
+    <ul>
+        {% for club in clubs %}
+            <li>
+                <img src="{{ club.logo_url }}" alt="{{ club.name }}" width="50">
+                <strong>{{ club.name }}</strong> - {{ club.country }} - {{ club.league }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
