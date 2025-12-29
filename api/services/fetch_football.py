@@ -9,8 +9,9 @@ BASE_URL = 'https://v3.football.api-sports.io/'
 def fetch_clubs(league_id: int, season: int):
     url = f'{BASE_URL}teams'
     headers = {'x-apisports-key': API_KEY}
+    params = {'league': league_id, 'season': season}
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, params=params)
     
     print("Status code:", response.status_code)
     
@@ -23,21 +24,23 @@ def fetch_clubs(league_id: int, season: int):
 
     for item in data['response']:
         team = item['team']
-        league_name = item['league']['name']
+        venue = item.get('venue', {})
         
         print("Processing team:", team['name'])
+
 
         Club.objects.update_or_create(
             name=team['name'],
             defaults={
                 'slug': team['name'].lower().replace(" ", "-"),
-                'country': team['country'],
-                'city': team.get('venue', ''),
-                'league': league_name,
-                'stadium': team.get('venue', ''),
-                'logo_url': team['logo'],
+                'country': team.get('country', 'Unknown'),
+                'city': venue.get('city', ''),
+                'league': 'PL',
+                'stadium': venue.get('name', ''),
+                'logo_url': team.get('logo', ''),
                 'is_active': True
-            }
-        )
+    }
+)
+
 
     print(f"Dohvaćeno {len(data['response'])} klubova za ligu {league_id}, sezonu {season}")

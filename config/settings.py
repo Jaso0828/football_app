@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'football',
     'api',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

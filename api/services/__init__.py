@@ -1,0 +1,1 @@
+from .fetch_football import fetch_clubs
