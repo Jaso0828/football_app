@@ -1,7 +1,9 @@
 import requests
 from football.models import Club
+from django.conf import settings
 
-API_KEY = 'a0f768f92194504083ab96f2b13e3466'
+
+API_KEY = settings.API_FOOTBALL_KEY
 BASE_URL = 'https://v3.football.api-sports.io/'
 
 def fetch_clubs(league_id: int, season: int):
