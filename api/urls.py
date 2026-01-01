@@ -13,7 +13,7 @@ urlpatterns = [
     path('players/<int:pk>/', PlayerDetailView.as_view(), name='player-detail'),
     
 
-    path('clubs-web/', clubs_list_view, name='clubs-list-web'),
+    path('', clubs_list_view, name='clubs'),
     path('clubs', ClubListView.as_view(), name='clubs_list'),
     path('clubs/<int:pk>/', ClubDetailView.as_view(), name='club-detail'),
 ]
