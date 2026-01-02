@@ -1,1 +1,2 @@
 from .fetch_football import fetch_clubs
+from .fetch_player import fetch_players, fetch_all_premier_league_players

@@ -1,5 +1,5 @@
 import requests
-from football.models import Club
+from football.models import Club, Stadium
 from django.conf import settings
 
 
@@ -28,6 +28,16 @@ def fetch_clubs(league_id: int, season: int):
         
         print("Processing team:", team['name'])
 
+        stadium, _ = Stadium.objects.update_or_create(
+            name=venue['name'],
+            defaults={
+            'address': venue.get('address', ''),
+            'city': venue.get('city', ''),
+            'capacity': venue.get('capacity', None),
+            'surface': venue.get('surface', ''),
+            'image_url': venue.get('image', ''),
+        }
+    )
 
         Club.objects.update_or_create(
             name=team['name'],
@@ -35,9 +45,10 @@ def fetch_clubs(league_id: int, season: int):
                 'slug': team['name'].lower().replace(" ", "-"),
                 'country': team.get('country', 'Unknown'),
                 'city': venue.get('city', ''),
-                'league': 'PL',
-                'stadium': venue.get('name', ''),
+                'league': 'Premier League',
+                'stadium': stadium,
                 'logo_url': team.get('logo', ''),
+                'founding_year': team.get('founded'),
                 'is_active': True
     }
 )

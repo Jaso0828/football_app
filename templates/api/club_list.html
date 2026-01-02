@@ -1,21 +1,35 @@
 {% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Football Clubs{% endblock %}
 
 {% block page_content %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Football Clubs</title>
-</head>
-<body>
-    <h1>Lista Klubova</h1>
-    <ul>
+<h1 class="text-center my-4">Lista klubova</h1>
+
+<div class="container">
+    <div class="row align-items-stretch">
         {% for club in clubs %}
-            <li>
-                <img src="{{ club.logo_url }}" alt="{{ club.name }}" width="50">
-                <strong>{{ club.name }}</strong> - {{ club.country }} - {{ club.league }}
-            </li>
+            <div class="col-md-4 col-sm-6 mb-4 d-flex">
+                <div class="card w-100">
+                    <div class="card-body d-flex flex-column text-center">
+                        <img src="{{ club.logo_url }}" width="50" class="mb-2 mx-auto d-block">
+
+                        <h5 class="card-title">{{ club.name }}</h5>
+
+                        <p class="card-text">
+                            {{ club.country }}<br>
+                            {{ club.league }}
+                        </p>
+
+                        <a class="btn btn-outline-primary mt-auto"
+                           href="{% url 'clubs:club-detail' club.pk %}">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    </div>
+</div>
+
 {% endblock page_content %}

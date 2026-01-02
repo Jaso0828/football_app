@@ -1,0 +1,35 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}Football Players{% endblock %}
+{% block page_content %}
+<h1 class="text-center my-4">Lista igrača</h1>
+<div class="container">
+    <div class="row align-items-stretch">
+        {% for player in players %}
+        <div class="col-md-4 col-sm-6 mb-4 d-flex">
+            <div class="card w-100">
+                <div class="card-body d-flex flex-column text-center">
+                    <img src="{{ player.photo_url }}" 
+                         alt="{{ player.name }}" 
+                         class="mb-2 mx-auto d-block rounded-circle"
+                         style="width: 80px; height: 80px; object-fit: cover;">
+                    <h5 class="card-title">{{ player.name }}</h5>
+                    <p class="card-text">
+                        <strong>Club:</strong> {{ player.club.name }}<br>
+                        <strong>Position:</strong> {{ player.position }}<br>
+                        {% if player.number %}
+                        <strong>Number:</strong> {{ player.number }}<br>
+                        {% endif %}
+                        <strong>Nationality:</strong> {{ player.nationality }}
+                    </p>
+                    {% comment %} <a class="btn btn-outline-primary mt-auto" {% endcomment %}
+                       {% comment %} href="{% url 'player-detail' player.pk %}"> {% endcomment %}
+                        Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock page_content %}

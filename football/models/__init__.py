@@ -1,2 +1,2 @@
-from .club import Club
+from .club import Club, Stadium
 from .player import Player

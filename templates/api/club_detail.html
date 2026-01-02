@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block page_title %}Club Detail{% endblock page_title %}
+
+{% block page_content %}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="club-title">{{ club.name }} </h2>
+            <img src="{{ club.logo_url }}" alt="{{ club.name }}" class="img-fluid" style="max-height:150px; margin-bottom: 30px;">
+            <p><strong>Country:</strong> {{ club.country }}</p>
+            <p><strong>City:</strong> {{ club.city }}</p>
+            <p><strong>League:</strong> {{ club.league }}</p>
+            <p><strong>Stadium:</strong> {{ club.stadium.name}}</p>
+            <p style="padding-left: 74px;"><strong></strong> Capacity: {{ club.stadium.capacity}}</p>
+            <p style="padding-left: 74px;"><strong></strong> Address: {{ club.stadium.address}}</p>
+            <p style="padding-left: 74px;"><strong></strong> <img src= "{{ club.stadium.image_url}}"> </p>
+            <p><strong>Founding year:</strong> {{ club.founding_year }}</p>
+          
+
+            
+            <a href="{% url 'clubs:clubs' %}" class="btn btn-outline-secondary position-absolute bottom-0 end-0 m-2">
+                ← Back
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock page_content %}
+
+
+
