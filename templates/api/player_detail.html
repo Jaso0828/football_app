@@ -1,0 +1,92 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}{{ player.name }} - Player Detail{% endblock %}
+
+{% block page_content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <!-- Player Photo and Name -->
+            <div class="text-center mb-4">
+                <img src="{{ player.photo_url }}" 
+                     alt="{{ player.name }}" 
+                     class="rounded-circle mb-3"
+                     style="width: 150px; height: 150px; object-fit: cover;">
+                <h2 class="player-name">{{ player.name }}</h2>
+                
+                {% if player.number %}
+                <h4 class="text-muted">
+                    <span class="badge bg-primary" style="font-size: 1.5rem;">
+                        #{{ player.number }}
+                    </span>
+                </h4>
+                {% endif %}
+            </div>
+
+            <!-- Player Info Grid -->
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-md-6">
+                    <h5 class="border-bottom pb-2 mb-3">Personal Information</h5>
+                    
+                    <p><strong>Nationality:</strong> {{ player.nationality }}</p>
+                    
+                    {% if player.age %}
+                    <p><strong>Age:</strong> {{ player.age }} years</p>
+                    {% endif %}
+                    
+                    {% if player.birth_date %}
+                    <p><strong>Date of Birth:</strong> {{ player.birth_date|date:"F d, Y" }}</p>
+                    {% endif %}
+                    
+                    {% if player.height %}
+                    <p><strong>Height:</strong> {{ player.height }}</p>
+                    {% endif %}
+                    
+                    {% if player.weight %}
+                    <p><strong>Weight:</strong> {{ player.weight }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-md-6">
+                    <h5 class="border-bottom pb-2 mb-3">Club Information</h5>
+                    
+                    <p>
+                        <strong>Club:</strong> 
+                        <a href="{% url 'clubs:club_detail' player.club.pk %}">
+                            {{ player.club.name }}
+                        </a>
+                    </p>
+                    
+                    <p>
+                        <img src="{{ player.club.logo_url }}" 
+                             alt="{{ player.club.name }}" 
+                             style="width: 40px; height: 40px; object-fit: contain;">
+                        {{ player.club.name }}
+                    </p>
+                    
+                    <p><strong>Position:</strong> {{ player.position }}</p>
+                    
+                    {% if player.number %}
+                    <p><strong>Jersey Number:</strong> {{ player.number }}</p>
+                    {% endif %}
+                    
+                    <p><strong>League:</strong> {{ player.club.league }}</p>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="mt-4">
+                <a href="{% url 'clubs:players' %}" class="btn btn-outline-secondary">
+                    ← Back to Players
+                </a>
+                <a href="{% url 'clubs:club_detail' player.club.pk %}" class="btn btn-outline-primary">
+                    Back to Club
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}

@@ -5,8 +5,10 @@ from .views.club_views import (club_detail_view,
                               ClubListView)
 from .views.player_views import(PlayerListView,
                                PlayerDetailView,
-                               player_list_view)
+                               player_list_view,
+                               player_detail_view)
 
+app_name = 'clubs'
 
 urlpatterns = [
     #API
@@ -18,6 +20,7 @@ urlpatterns = [
 
     #HTML.  
     path('', clubs_list_view, name='clubs'),
-    path('clubs/<int:pk>/', club_detail_view, name='club-detail'),
+    path('clubs/<int:pk>/', club_detail_view, name='club_detail'),
     path('players/', player_list_view, name='players'),
+    path('players/<int:pk>/', player_detail_view, name='player_detail'),
 ]

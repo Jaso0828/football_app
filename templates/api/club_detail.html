@@ -19,7 +19,47 @@
             <p style="padding-left: 74px;"><strong></strong> <img src= "{{ club.stadium.image_url}}"> </p>
             <p><strong>Founding year:</strong> {{ club.founding_year }}</p>
           
+          <h5 class="border-bottom pb-2 mb-3 mt-4">Squad</h5>
 
+            <!-- Goalkeepers -->
+            <h6>Goalkeepers</h6>
+            <ul>
+            {% for player in players %}
+                {% if 'Goalkeeper' in player.position %}
+                <li><a href="{% url 'clubs:player_detail' player.pk %}">{{ player.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+
+            <!-- Defenders -->
+            <h6>Defenders</h6>
+            <ul>
+            {% for player in players %}
+                {% if 'Defender' in player.position %}
+                <li><a href="{% url 'clubs:player_detail' player.pk %}">{{ player.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+
+            <!-- Midfielders -->
+            <h6>Midfielders</h6>
+            <ul>
+            {% for player in players %}
+                {% if 'Midfielder' in player.position %}
+                <li><a href="{% url 'clubs:player_detail' player.pk %}">{{ player.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+
+            <!-- Attackers -->
+            <h6>Attackers</h6>
+            <ul>
+            {% for player in players %}
+                {% if 'Attacker' in player.position %}
+                <li><a href="{% url 'clubs:player_detail' player.pk %}">{{ player.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
             
             <a href="{% url 'clubs:clubs' %}" class="btn btn-outline-secondary position-absolute bottom-0 end-0 m-2">
                 ← Back

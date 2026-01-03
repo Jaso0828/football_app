@@ -22,5 +22,9 @@ def player_list_view(requests):
     players = Player.objects.all()
     return render(requests, 'api/player_list.html', {'players':players})
 
+def player_detail_view(request, pk):
+    player = get_object_or_404(Player.objects.select_related('club'), pk=pk)
+    return render(request, 'api/player_detail.html', {'player': player})
+
 
 

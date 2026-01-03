@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, filters
-from football.models import  Club
+from football.models import  Club, Player
 from ..serializer import ClubSerializer
 
 
@@ -27,4 +27,7 @@ def clubs_list_view(request):
 
 def club_detail_view(request, pk):
     club = get_object_or_404(Club, pk=pk)
-    return render(request, 'api/club_detail.html', {'club': club})
+    players = club.players.all()
+    return render(request, 'api/club_detail.html', {'club': club, 'players': players})
+
+

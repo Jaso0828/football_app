@@ -22,13 +22,19 @@
                         </p>
 
                         <a class="btn btn-outline-primary mt-auto"
-                           href="{% url 'clubs:club-detail' club.pk %}">
+                           href="{% url 'clubs:club_detail' club.pk %}">
                             Details
                         </a>
                     </div>
                 </div>
             </div>
         {% endfor %}
+        <div class="text-end p-2">
+        <a class="btn btn-outline-primary position-absolute top-0 end-0 m-2"
+           href="{% url 'clubs:players' %}">
+            Players list
+        </a>
+        </div>
     </div>
 </div>
 

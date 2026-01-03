@@ -22,14 +22,20 @@
                         {% endif %}
                         <strong>Nationality:</strong> {{ player.nationality }}
                     </p>
-                    {% comment %} <a class="btn btn-outline-primary mt-auto" {% endcomment %}
-                       {% comment %} href="{% url 'player-detail' player.pk %}"> {% endcomment %}
+                    <a class="btn btn-outline-primary mt-auto"
+                       href="{% url 'clubs:player_detail' player.pk %}">
                         Details
                     </a>
                 </div>
             </div>
         </div>
         {% endfor %}
+        <div class="text-end p-2">
+        <a class="btn btn-outline-primary position-absolute top-0 end-0 m-2"
+           href="{% url 'clubs:clubs' %}">
+            Clubs list
+        </a>
+        </div>
     </div>
 </div>
 {% endblock page_content %}
